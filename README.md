@@ -14,7 +14,7 @@ MQ入門の入り口になるようなコンテンツを目指して。
 REST APIで「Hello MQ!!」というメッセージを送受信してみます。
 
 ※以下図における「アプリ」はcURLコマンドを指します。
-![MQシステム構成.jpg](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/664175/b161932f-a0a5-306d-fb98-c2241d2b9049.jpeg)
+![MQコンテナ構成](https://github.com/IBMDeveloperTokyo/techdojo-mq-sample/assets/99166088/60ce8ec0-e35a-4844-9051-683c6943bc69)
 
 # 私の環境
 * Windows11 Pro
