@@ -71,6 +71,7 @@ https://localhost:9443/ibmmq/console/
 ![image](https://github.com/IBMDeveloperTokyo/techdojo-mq-sample/assets/99166088/180d875f-9aca-4e99-827b-e4be219b1d47)
 
 ## DEV.QUEUE.1を開く
+赤枠のDEV.QUEUE.1をクリック
 ![image](https://github.com/IBMDeveloperTokyo/techdojo-mq-sample/assets/99166088/1988528e-4820-42af-8bee-f8bcac7387a1)
 ※このあとのメッセージ送受信で使用するキューです。
 
