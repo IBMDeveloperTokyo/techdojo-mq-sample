@@ -66,22 +66,41 @@ https://localhost:9443/ibmmq/console/
 （admin/passw0rdでログイン）
 ※警告が出るが無視してログイン
 
+# キュー（DEV.QUEUE1）の中身を確認
+## キューマネージャQM1をクリック
+![image](https://github.com/IBMDeveloperTokyo/techdojo-mq-sample/assets/99166088/180d875f-9aca-4e99-827b-e4be219b1d47)
+
+## DEV.QUEUE.1を開く
+![image](https://github.com/IBMDeveloperTokyo/techdojo-mq-sample/assets/99166088/1988528e-4820-42af-8bee-f8bcac7387a1)
+※このあとのメッセージ送受信で使用するキューです。
+
 # RESTAPI実行のために事前認証（トークン認証）
 ```
 # app/passw0rdでログイン。ローカルPC側のCookieに認証情報を保存する
 $ curl -k https://localhost:9443/ibmmq/rest/v2/login -X POST -H "Content-Type: application/json; charset=UTF-8" -d "{\"username\":\"app\",\"password\":\"passw0rd\"}" -c c:\users\hogehoge\cookiejar.txt
 ```
 
-# メッセージ送受信
+# メッセージ送信
 ```
 # 送信
 $ curl -k https://localhost:9443/ibmmq/rest/v2/messaging/qmgr/QM1/queue/DEV.QUEUE.1/message -X POST -b c:\users\hogehoge\cookiejar.txt -H "ibm-mq-rest-csrf-token: value" -H "Content-Type: text/plain;charset=utf-8" --data "Hello MQ!!"
+```
 
-# 受信
-$ curl -k https://localhost:9443/ibmmq/rest/v2/messaging/qmgr/QM1/queue/DEV.QUEUE.1/message -b c:\users\hogehoge\cookiejar.txt -H "ibm-mq-rest-csrf-token: value" -H "Content-Type: text/plain;charset=utf-8"
+# 送信メッセージ確認
+WebConsoleで送信したメッセージを格納しているか確認
+![image](https://github.com/IBMDeveloperTokyo/techdojo-mq-sample/assets/99166088/87505bb2-fd29-47f8-a159-7733e9c687c2)
+
+# メッセージ受信
+```
+# 受信（メッセージ受信しつつ、キューからメッセージを消す）
+$ curl -k https://localhost:9443/ibmmq/rest/v2/messaging/qmgr/QM1/queue/DEV.QUEUE.1/message -X DELETE -b c:\users\hogehoge\cookiejar.txt -H "ibm-mq-rest-csrf-token: value" -H "Content-Type: text/plain;charset=utf-8"
 Hello MQ!!
 ```
 コンソールに「Hello MQ!!」となればOK。メッセージ受信できています。
+
+# メッセージ削除確認
+WebConsoleで、受信したメッセージが消えているか確認
+![image](https://github.com/IBMDeveloperTokyo/techdojo-mq-sample/assets/99166088/4d827b2d-a6cc-4957-9da6-f226bd88e198)
 
 # 最後に
 ということで、ここまでMQコンテナを使って、メッセージキューを体験してみましたがいかがでしたか？
